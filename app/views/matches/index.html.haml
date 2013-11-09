@@ -1,0 +1,29 @@
+%h1 Codeship Foosball
+
+%ol
+  - @players.each do |player|
+    %li
+      = player.name
+
+= form_tag Match.new do
+  %h2 Team Home
+
+  = label :forward_home, 'Forward'
+  = select_tag :forward_home, options_for_select(@players.map(&:name))
+  = label :defender_home, 'Defender'
+  = select_tag :defender_home, options_for_select(@players.map(&:name))
+
+  %h2 Team Away
+  = label :forward_away, 'Forward'
+  = select_tag :forward_away, options_for_select(@players.map(&:name))
+  = label :defender_away, 'Defender'
+  = select_tag :defender_away, options_for_select(@players.map(&:name))
+
+  = submit_tag "Play!"
+
+%h2 Matches
+
+%ul
+  - @matches.each do |match|
+    %li
+      = match.id

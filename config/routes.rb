@@ -5,6 +5,8 @@ Foosball::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'matches#index'
 
+  resources :matches
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
