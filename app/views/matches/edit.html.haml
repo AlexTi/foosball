@@ -1,0 +1,22 @@
+%h1 Match
+%h2 Team Home
+%h3 Forward
+= @match.home_team.forward_player.name
+%h3 Defense
+= @match.home_team.defense_player.name
+
+%h2 Team Away
+%h3 Forward
+= @match.away_team.forward_player.name
+%h3 Defense
+= @match.away_team.defense_player.name
+
+%h2 Score
+= form_tag @match, method: :put do |f|
+  = label :home_team_score, 'Home Team Score:'
+  = text_field(:match, :home_team_score)
+  = label :away_team_score, 'Away Team Score:'
+  = text_field(:match, :away_team_score)
+
+  = submit_tag "Finish"
+

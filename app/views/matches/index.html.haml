@@ -9,21 +9,35 @@
   %h2 Team Home
 
   = label :forward_home, 'Forward'
-  = select_tag :forward_home, options_for_select(@players.map(&:name))
-  = label :defender_home, 'Defender'
-  = select_tag :defender_home, options_for_select(@players.map(&:name))
+  = select :forward_home, :player_id, @players.collect {|p| [ p.name, p.id ] }
+  = label :defense_home, 'Defense'
+  = select :defense_home, :player_id, @players.collect {|p| [ p.name, p.id ] }
 
   %h2 Team Away
   = label :forward_away, 'Forward'
-  = select_tag :forward_away, options_for_select(@players.map(&:name))
-  = label :defender_away, 'Defender'
-  = select_tag :defender_away, options_for_select(@players.map(&:name))
+  = select :forward_away, :player_id, @players.collect {|p| [ p.name, p.id ] }
+  = label :defense_away, 'Defense'
+  = select :defense_away, :player_id, @players.collect {|p| [ p.name, p.id ] }
 
   = submit_tag "Play!"
 
 %h2 Matches
 
-%ul
+%table
+  %tr
+    %th
+    %th
+    %th Home Team
+    %th :
+    %th Away Team
+    %th
+    %th
   - @matches.each do |match|
-    %li
-      = match.id
+    %tr
+      %td= match.home_team.forward_player.name
+      %td= match.home_team.defense_player.name
+      %td= match.home_team_score
+      %td :
+      %td= match.away_team_score
+      %td= match.away_team.forward_player.name
+      %td= match.away_team.defense_player.name
