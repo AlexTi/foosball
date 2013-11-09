@@ -5,4 +5,13 @@ class Player < ActiveRecord::Base
   def teams
     (teams_as_forward + teams_as_defender).uniq
   end
+
+  def matches
+    ( teams_as_forward.collect(&:home_matches) +
+      teams_as_defender.collect(&:home_matches) +
+      teams_as_forward.collect(&:away_matches) +
+      teams_as_defender.collect(&:away_matches)
+    ).uniq
+  end
+
 end
