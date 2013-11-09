@@ -1,6 +1,6 @@
 class PlayerNotInBothTeams < ActiveModel::Validator
   def validate(record)
-    player_in_both_teams = (record.home_team.player_ids & record.away_team.player_ids)
+    player_in_both_teams = (record.try(:home_team).try(:player_ids) & record.try(:away_team).try(:player_ids))
 
     if player_in_both_teams.any?
       player_in_both_teams.each do |player_id|
@@ -18,6 +18,7 @@ class Match < ActiveRecord::Base
   scope :finished,    -> { where.not(home_team_score: nil).where.not(away_team_score: nil) }
   scope :unfinished,  -> { where(home_team_score: nil).where(away_team_score: nil) }
 
+  validates :away_team_id, :home_team_id, presence: true
   validates_with PlayerNotInBothTeams
 
   def winner
