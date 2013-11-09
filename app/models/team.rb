@@ -12,4 +12,12 @@ class Team < ActiveRecord::Base
   def matches
     (home_matches + away_matches).uniq
   end
+
+  def players
+    [forward_player, defense_player]
+  end
+
+  def player_ids
+    players.collect(&:id)
+  end
 end
