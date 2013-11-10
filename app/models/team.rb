@@ -12,7 +12,12 @@ class Team < ActiveRecord::Base
   end
 
   def matches
-    (home_matches + away_matches).uniq
+    t = Match.arel_table
+
+    Match.where(
+      t[:home_team_id].eq(self.id).
+      or(t[:away_team_id].eq(self.id))
+    ).uniq
   end
 
   def players

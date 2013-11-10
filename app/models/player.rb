@@ -3,15 +3,15 @@ class Player < ActiveRecord::Base
   has_many :teams_as_defender, class_name: "Team", foreign_key: :defense_player_id
 
   def teams
-    (teams_as_forward + teams_as_defender).uniq
-  end
+    t = Team.arel_table
 
-  def matches
-    ( teams_as_forward.collect(&:home_matches) +
-      teams_as_defender.collect(&:home_matches) +
-      teams_as_forward.collect(&:away_matches) +
-      teams_as_defender.collect(&:away_matches)
+    Team.where(
+      t[:forward_player_id].eq(self.id).
+      or(t[:defense_player_id].eq(self.id))
     ).uniq
   end
 
+  def matches
+    teams.collect(&:matches).flatten.uniq
+  end
 end
