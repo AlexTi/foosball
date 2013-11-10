@@ -27,4 +27,8 @@ class Team < ActiveRecord::Base
   def player_ids
     players.collect(&:id)
   end
+
+  def points
+    Statistics.points_for_team self
+  end
 end
