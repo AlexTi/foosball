@@ -31,4 +31,12 @@ class Team < ActiveRecord::Base
   def points
     Statistics.points_for_team self
   end
+
+  def goals
+    Statistics.goals_for_team self
+  end
+
+  def goals_conceded
+    Statistics.goals_conceded_for_team self
+  end
 end
