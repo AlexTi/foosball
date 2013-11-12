@@ -4,8 +4,7 @@
 %ol
   - @teams.each do |team|
     %li
-      = team.defense_player.name
-      = team.forward_player.name
+      = team.name
       = team.points
       = team.goals
       = team.goals_conceded

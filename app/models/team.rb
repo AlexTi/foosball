@@ -11,6 +11,18 @@ class Team < ActiveRecord::Base
     Team.where(forward_player_id: forward_player.id).where(defense_player_id: defense_player.id).first_or_create
   end
 
+  def name
+    if solo?
+      self.defense_player.name
+    else
+      [self.defense_player.name, self.forward_player.name].to_sentence
+    end
+  end
+
+  def solo?
+    self.defense_player_id == self.forward_player_id
+  end
+
   def matches
     t = Match.arel_table
 

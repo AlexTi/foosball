@@ -34,10 +34,8 @@
     %th
   - @matches.each do |match|
     %tr
-      %td= match.home_team.forward_player.name
-      %td= match.home_team.defense_player.name
+      %td= match.home_team.name
       %td= match.home_team_score
       %td :
       %td= match.away_team_score
-      %td= match.away_team.forward_player.name
-      %td= match.away_team.defense_player.name
+      %td= match.away_team.name
