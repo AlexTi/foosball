@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131109193138) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "matches", force: true do |t|
     t.integer  "home_team_id",    null: false
     t.integer  "away_team_id",    null: false
