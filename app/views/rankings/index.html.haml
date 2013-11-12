@@ -1,0 +1,11 @@
+%h1 Codeship Foosball
+
+%h2 Rankings
+%ol
+  - @teams.each do |team|
+    %li
+      = team.defense_player.name
+      = team.forward_player.name
+      = team.points
+      = team.goals
+      = team.goals_conceded
