@@ -15,3 +15,16 @@
 
 @import "bootstrap";
 @import "bootstrap/theme";
+
+h2{
+  background: url(asset-path('pool_table_@2X.png')) repeat;
+  background-size: 256px 256px;
+  color: #fff;
+  padding: 10px;
+}
+.navbar{
+  border-top: 5px solid rgb(53,112,77);
+}
+td.right, th.right{
+  text-align: right;
+}

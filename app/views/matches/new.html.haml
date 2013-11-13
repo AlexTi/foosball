@@ -1,0 +1,14 @@
+= form_tag Match.new do
+  %h2 Team Home
+  = label :forward_home, 'Forward'
+  = select :forward_home, :player_id, @players.collect {|p| [ p.name, p.id ] }, {}, class: "form-control"
+  = label :defense_home, 'Defense'
+  = select :defense_home, :player_id, @players.collect {|p| [ p.name, p.id ] }, {}, class: "form-control"
+
+  %h2 Team Away
+  = label :forward_away, 'Forward'
+  = select :forward_away, :player_id, @players.collect {|p| [ p.name, p.id ] }, {}, class: "form-control"
+  = label :defense_away, 'Defense'
+  = select :defense_away, :player_id, @players.collect {|p| [ p.name, p.id ] }, {}, class: "form-control"
+
+  = submit_tag "Play!", class: "btn btn-primary"

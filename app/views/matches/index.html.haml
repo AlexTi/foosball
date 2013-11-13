@@ -1,41 +1,29 @@
-%h1 Codeship Foosball
-
-%h2 Players
-%ol
-  - @players.each do |player|
-    %li
-      = player.name
-
-= form_tag Match.new do
-  %h2 Team Home
-  = label :forward_home, 'Forward'
-  = select :forward_home, :player_id, @players.collect {|p| [ p.name, p.id ] }
-  = label :defense_home, 'Defense'
-  = select :defense_home, :player_id, @players.collect {|p| [ p.name, p.id ] }
-
-  %h2 Team Away
-  = label :forward_away, 'Forward'
-  = select :forward_away, :player_id, @players.collect {|p| [ p.name, p.id ] }
-  = label :defense_away, 'Defense'
-  = select :defense_away, :player_id, @players.collect {|p| [ p.name, p.id ] }
-
-  = submit_tag "Play!", class: "btn btn-primary"
-
 %h2 Matches
 
-%table
-  %tr
-    %th
-    %th
-    %th Home Team
-    %th :
-    %th Away Team
-    %th
-    %th
-  - @matches.each do |match|
+%h3 finished
+%table{class:"table table-striped"}
+  %thead
+    %tr
+      %th Home Team
+      %th
+      %th.right Away Team
+  - @finished_matches.each do |match|
     %tr
       %td= match.home_team.name
-      %td= match.home_team_score
-      %td :
-      %td= match.away_team_score
-      %td= match.away_team.name
+      %td= [match.home_team_score, match.away_team_score].join ":"
+      %td.right= match.away_team.name
+
+%h3 unfinished
+%table{class:"table table-striped"}
+  %thead
+    %tr
+      %th Home Team
+      %th
+      %th.right Away Team
+      %th
+  - @unfinished_matches.each do |match|
+    %tr
+      %td= match.home_team.name
+      %td XX : XX
+      %td.right= match.away_team.name
+      %td.right= button_to "edit", edit_match_path(match), method: "get", class: "btn btn-warning"

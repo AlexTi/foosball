@@ -1,8 +1,12 @@
 class MatchesController < ApplicationController
 
   def index
+    @finished_matches = Match.finished.order('created_at DESC')
+    @unfinished_matches = Match.unfinished.order('created_at DESC')
+  end
+
+  def new
     @players = Player.all
-    @matches = Match.all.order('created_at DESC')
   end
 
   def edit

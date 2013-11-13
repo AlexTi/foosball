@@ -1,10 +1,14 @@
-%h1 Codeship Foosball
-
 %h2 Rankings
-%ol
+
+%table.table
+  %tr
+    %th Name
+    %th Points
+    %th Goals
+    %th Goals C
   - @teams.each do |team|
-    %li
-      = team.name
-      = team.points
-      = team.goals
-      = team.goals_conceded
+    %tr
+      %td= team.name
+      %td= team.points
+      %td= team.goals
+      %td= team.goals_conceded
