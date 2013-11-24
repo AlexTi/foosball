@@ -1,0 +1,17 @@
+%h2= ranking.name
+
+%table{class:"table table-striped"}
+  %thead
+    %tr
+      %th Name
+      %th Games
+      %th Points
+      %th Goals
+      %th Goals C
+  - ranking.each_team do |team|
+    %tr
+      %td= team.name
+      %td= team.matches.count
+      %td= team.points
+      %td= team.goals
+      %td= team.goals_conceded
