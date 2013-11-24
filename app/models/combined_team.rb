@@ -8,7 +8,7 @@ class CombinedTeam
   end
 
   def matches
-    @teams_to_combine.collect(&:matches).flatten
+    @teams_to_combine.collect(&:matches).collect(&:finished).flatten
   end
 
   def points
@@ -21,5 +21,9 @@ class CombinedTeam
 
   def goals_conceded
     @teams_to_combine.map(&:goals_conceded).reduce(:+)
+  end
+
+  def to_param
+    @teams_to_combine.first.to_param
   end
 end

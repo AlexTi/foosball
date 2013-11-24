@@ -10,7 +10,7 @@
       %th Goals C
   - ranking.each_team do |team|
     %tr
-      %td= team.name
+      %td= link_to(team.name, team_path(team))
       %td= team.matches.count
       %td= team.points
       %td= team.goals

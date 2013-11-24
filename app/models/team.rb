@@ -11,6 +11,11 @@ class Team < ActiveRecord::Base
     Team.where(forward_player_id: forward_player.id).where(defense_player_id: defense_player.id).first_or_create
   end
 
+  def self.tag_team_for team
+    Team.where(defense_player_id: team.forward_player_id)
+        .where(forward_player_id: team.defense_player_id).first
+  end
+
   def name
     if solo?
       self.defense_player.name

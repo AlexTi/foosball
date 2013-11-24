@@ -8,10 +8,7 @@
       %th
       %th.right Away Team
   - @finished_matches.each do |match|
-    %tr
-      %td= match.home_team.name
-      %td= [match.home_team_score, match.away_team_score].join ":"
-      %td.right= match.away_team.name
+    = render partial: "match_row", locals: { match: match }
 
 %h3 unfinished
 %table{class:"table table-striped"}
