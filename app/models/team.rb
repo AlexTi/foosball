@@ -5,6 +5,8 @@ class Team < ActiveRecord::Base
   has_many :home_matches, class_name: 'Match', foreign_key: :home_team_id
   has_many :away_matches, class_name: 'Match', foreign_key: :away_team_id
 
+  scope :with_matches, -> { joins("INNER JOIN matches ON matches.home_team_id = teams.id OR matches.away_team_id = teams.id").group("teams.id").having("COUNT(matches.id) > 0") }
+
   validates :forward_player_id, :defense_player_id, presence: true
 
   def self.from_players forward_player: forward_player, defense_player: defense_player
