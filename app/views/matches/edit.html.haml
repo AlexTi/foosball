@@ -1,18 +1,18 @@
-%table.table
-  %tr
-    %th Home Team
-    %th :
-    %th Away Team
-  - [@match].each do |match|
+= form_tag @match, method: :put do |f|
+  %table.table
     %tr
-      %td= match.home_team.name
-      %td= [match.home_team_score, match.away_team_score].join ":"
-      %td= match.away_team.name
+      %th Home Team
+      %th :
+      %th Away Team
+    - [@match].each do |match|
+      %tr
+        %td= match.home_team.name
+        %td= [match.home_team_score, match.away_team_score].join ":"
+        %td= match.away_team.name
 
-  %tr
-    = form_tag @match, method: :put do |f|
+    %tr
       %td= text_field(:match, :home_team_score)
       %td
       %td= text_field(:match, :away_team_score)
 
-= submit_tag "save"
+  = submit_tag "save"

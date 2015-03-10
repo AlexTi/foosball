@@ -1,0 +1,4 @@
+%tr
+  %td= link_to(match.home_team.name, team_path(match.home_team))
+  %td= [match.home_team_score, match.away_team_score].join ":"
+  %td.right= link_to(match.away_team.name, team_path(match.away_team))

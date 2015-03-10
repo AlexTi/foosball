@@ -1,0 +1,10 @@
+%h2= "Matches of #{@team.name}"
+
+%table{class:"table table-striped"}
+  %thead
+    %tr
+      %th Home Team
+      %th
+      %th.right Away Team
+  - @team.matches.each do |match|
+    = render partial: "matches/match_row", locals: { match: match }
